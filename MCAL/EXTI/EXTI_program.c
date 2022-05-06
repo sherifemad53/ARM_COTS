@@ -11,7 +11,7 @@
 #include "EXTI_config.h"
 #include "EXTI_private.h"
 
-void EXTI_voidInit(u8 copy_u8Line, u8 copy_u8SignalLatch)
+void MEXTI_voidInit(u8 copy_u8Line, u8 copy_u8SignalLatch)
 {
   switch (copy_u8SignalLatch)
   {
@@ -28,17 +28,19 @@ void EXTI_voidInit(u8 copy_u8Line, u8 copy_u8SignalLatch)
   }
 }
 
-void EXTI_voidEnableEXTI(u8 copy_u8Line)
+void MEXTI_voidEnableEXTI(u8 copy_u8Line)
 {
   SET_BIT(EXTI->EXTI_IMR, copy_u8Line);
 }
 
-void EXTI_voidDisableEXTI(u8 copy_u8Line)
+void MEXTI_voidDisableEXTI(u8 copy_u8Line)
 {
   CLR_BIT(EXTI->EXTI_IMR, copy_u8Line);
 }
 
-void EXTI_voidSoftwareTriggerEXTI(u8 copy_u8Line)
+void MEXTI_voidSoftwareTriggerEXTI(u8 copy_u8Line)
 {
-  SET_BIT(EXTI->EXTI_SWIER, SET_BIT(EXTI->EXTI_IMR, copy_u8Line));
+  //TODO: Why used this line not the one below ?? 
+  SET_BIT(EXTI->EXTI_SWIER, copy_u8Line);
+  //SET_BIT(EXTI->EXTI_SWIER, SET_BIT(EXTI->EXTI_IMR, copy_u8Line));
 }

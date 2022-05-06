@@ -25,8 +25,8 @@
 #define NVIC_IABR1 *((volatile u32 *)(NVIC_BASE_ADDRESS + 0x204))/*Read active flag for extrenal interrput from 32-59*/
 
 
-#define SCB_BASE_ADDRESS 0xE000ED00
-#define SCB_AIRCR *((volatile u32 *)(SCB_BASE_ADDRESS + 0x0C))
+
+
 
 //TODO how to can improve this register NVIC_IPR0 --> NVIC_IPR20 ?? addresses from 0x300 - 0x320 ??
 //ANS: by using it as an array as this register is byte accessible 

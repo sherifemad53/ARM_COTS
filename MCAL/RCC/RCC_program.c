@@ -27,7 +27,7 @@ void RCC_voidInitSysClock(void) {
 
 }
 
-void RCC_voidEnableClock(uint8_t Copy_uint8BusId, uint8_t Copy_uint8PerId) {
+void RCC_voidEnableClock(uint8 Copy_uint8BusId, uint8 Copy_uint8PerId) {
 	if (Copy_uint8PerId <= 31) {
 		switch (Copy_uint8PerId) {
 		case RCC_AHB:
@@ -47,7 +47,7 @@ void RCC_voidEnableClock(uint8_t Copy_uint8BusId, uint8_t Copy_uint8PerId) {
 	}
 }
 
-void RCC_voidDisableClock(uint8_t Copy_uint8BusId, uint8_t Copy_uint8PerId) {
+void RCC_voidDisableClock(uint8 Copy_uint8BusId, uint8 Copy_uint8PerId) {
 	if (Copy_uint8PerId <= 31) {
 		switch (Copy_uint8PerId) {
 		case RCC_AHB:

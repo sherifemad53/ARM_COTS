@@ -1,8 +1,8 @@
 /**************************************************/
-/*Author     :Sherif Emad*/
-/*Data         :25/4/2022 */
-/*Version      :V01*/
-/*******************************************/
+/*  Author       :Sherif Emad                     */
+/*  Data         :25/4/2022                       */
+/*  Version      :V01                             */
+/**************************************************/
 
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
@@ -10,6 +10,23 @@
 #include "NVIC_interface.h"
 #include "NVIC_private.h"
 #include "NVIC_config.h"
+
+void MNVIC_voidInit()
+{
+#define SCB_BASE_ADDRESS 0xE000ED00
+#define SCB_AIRCR *((volatile u32 *)(SCB_BASE_ADDRESS + 0x0C))
+  SCB_AIRCR = NIVC_GROUP_SUB;
+}
+
+void MNVIC_voidSetPriorty(s8 copy_s8IntNumber, u8 copy_u8GroupPriority, u8 copy_u8SubPriority)
+{
+  u8 Local_u8Proirity = copy_u8SubPriority | copy_u8GroupPriority << (NIVC_GROUP_SUB - MNVIC_GROUP_4_SUB_0) / 256;
+
+  if (copy_s8IntNumber >= 0 && copy_s8IntNumber <= 59)
+  {
+    NVIC_IPR[copy_s8IntNumber] = Local_u8Proirity << 4;
+  }
+}
 
 void MNVIC_voidEnableInterrput(u8 copy_u8IntNumber)
 {
@@ -107,14 +124,14 @@ u8 MNVIC_u8GetActiveFlag(u8 copy_u8IntNumber)
   return loc_u8Result;
 }
 
-// TODO this
-void MNVIC_voidSetPriorty(s8 copy_s8IntNumber, u8 copy_u8GroupPriority, u8 copy_u8SubPriority, u32 copy_u32Group)
-{
-  u8 Local_u8Proirity = copy_u8SubPriority | copy_u8GroupPriority << (copy_u32Group - GROUP3) / 256;
+// TODO: wrong function as i understand
+//  void MNVIC_voidSetPriorty(s8 copy_s8IntNumber, u8 copy_u8GroupPriority, u8 copy_u8SubPriority, u32 copy_u32Group)
+//  {
+//    u8 Local_u8Proirity = copy_u8SubPriority | copy_u8GroupPriority << (copy_u32Group - MNVIC_GROUP_4_SUB_0) / 256;
 
-  if (copy_s8IntNumber >= 0 && copy_s8IntNumber <= 59)
-  {
-    NVIC_IPR[copy_s8IntNumber] = Local_u8Proirity << 4;
-  }
-  SCB_AIRCR = copy_u32Group;
-}
+//   if (copy_s8IntNumber >= 0 && copy_s8IntNumber <= 59)
+//   {
+//     NVIC_IPR[copy_s8IntNumber] = Local_u8Proirity << 4;
+//   }
+//   SCB_AIRCR = copy_u32Group;
+// }

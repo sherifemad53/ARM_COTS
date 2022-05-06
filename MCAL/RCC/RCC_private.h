@@ -48,15 +48,15 @@ enum{
 };
 
 
-#define RCC_CR *((uint32_t*)0x40021000)
-#define RCC_CFGR *((uint32_t*)0x40021004)
-#define RCC_CIR *((uint32_t*)0x40021008)
-#define RCC_APB2RSTR *((uint32_t*)0x4002100C)
-#define RCC_APB1RSTR *((uint32_t*)0x40021010)
-#define RCC_AHBENR *((uint32_t*)0x40021014)
-#define RCC_APB2ENR *((uint32_t*)0x40021018)
-#define RCC_APB1ENR *((uint32_t*)0x4002101C)
-#define RCC_BDCR *((uint32_t*)0x40021020)
-#define RCC_CSR *((uint32_t*)0x400210024)
+#define RCC_CR *((u32*)0x40021000)
+#define RCC_CFGR *((u32*)0x40021004)
+#define RCC_CIR *((u32*)0x40021008)
+#define RCC_APB2RSTR *((u32*)0x4002100C)
+#define RCC_APB1RSTR *((u32*)0x40021010)
+#define RCC_AHBENR *((u32*)0x40021014)
+#define RCC_APB2ENR *((u32*)0x40021018)
+#define RCC_APB1ENR *((u32*)0x4002101C)
+#define RCC_BDCR *((u32*)0x40021020)
+#define RCC_CSR *((u32*)0x400210024)
 
 #endif

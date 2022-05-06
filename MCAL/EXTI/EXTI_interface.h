@@ -6,6 +6,8 @@
 #ifndef EXTI_INTERFACE_H
 #define EXTI_INTERFACE_H
 
+
+
 #define EXTI_LINE0 0
 #define EXTI_LINE1 1
 #define EXTI_LINE2 2
@@ -29,6 +31,10 @@
 #define EXTI_FALLING 1
 #define EXTI_ONCHANGE 2
 
+void MEXTI_voidInit(u8 copy_u8Line, u8 copy_u8SignalLatch);
+void MEXTI_voidEnableEXTI(u8 copy_u8Line);
+void MEXTI_voidDisableEXTI(u8 copy_u8Line);
+void MEXTI_voidSoftwareTriggerEXTI(u8 copy_u8Line);
 
 
 
