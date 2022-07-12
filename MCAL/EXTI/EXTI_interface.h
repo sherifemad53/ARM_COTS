@@ -31,11 +31,12 @@
 #define EXTI_FALLING 1
 #define EXTI_ONCHANGE 2
 
-void MEXTI_voidInit(u8 copy_u8Line, u8 copy_u8SignalLatch);
+void MEXTI_voidInit(void);
+void MEXTI_voidSetSignalLatch(u8 copy_u8Line, u8 Copy_u8EXTISenseMode);
 void MEXTI_voidEnableEXTI(u8 copy_u8Line);
 void MEXTI_voidDisableEXTI(u8 copy_u8Line);
 void MEXTI_voidSoftwareTriggerEXTI(u8 copy_u8Line);
-
+void MEXTI_voidSetCallBack(u8 Copy_u8EXTILine, void (*Copy_fptr)(void));
 
 
 #endif // !EXTI_INTERFACE_H

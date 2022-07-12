@@ -11,6 +11,10 @@
 #define GPIO_LOW 0
 #define GPIO_HIGH 1
 
+//Used in MGPIO_voidSetPinValue Function to Set pin to PULLUP or PULLDOWN 
+//After configuring it as INPUT_PIN
+#define GPIO_PULLDOWN 0
+#define GPIO_PULLUP 1
 
 #define GPIOA 0
 #define GPIOB 1
@@ -51,8 +55,6 @@
 #define INPUT_ANALOG 0b0000
 #define INPUT_FLOATING 0b0100
 #define INPUT_PULLDOWN_PULLUP 0b1000
-
-
 
 
 void MGPIO_voidSETPinDirection(uint8 copy_uint8PORT,uint8 copy_uint8PIN,uint8 copy_uint8Direction);

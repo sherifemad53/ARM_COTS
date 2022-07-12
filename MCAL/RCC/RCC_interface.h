@@ -71,8 +71,8 @@ typedef enum {
 } RCC_APB1_PERIPHERALS;
 
 
-void RCC_voidInitSysClock(void);
-void RCC_voidEnableClock(uint8 Copy_uint8BusId, uint8 Copy_uint8PerId);
-void RCC_voidDisableClock(uint8 Copy_uint8BusId, uint8 Copy_uint8PerId);
+void MRCC_voidInitSysClock(void);
+void MRCC_voidEnableClock(uint8 Copy_uint8BusId, uint8 Copy_uint8PerId);
+void MRCC_voidDisableClock(uint8 Copy_uint8BusId, uint8 Copy_uint8PerId);
 
 #endif

@@ -12,15 +12,5 @@
 */
 #define STK_CLKSOURCE CLK_SOURCE_AHB
 
-/* Options:ENABLE
-           DISABLE
-*/
-#define STK_TICKINTEN ENABLE
-
-/* Options:ENABLE
-           DISABLE
-*/
-#define STK_ENABLE ENABLE
-
 
 #endif // !_STK_CONFIG_H

@@ -11,6 +11,8 @@
 #include "AFIO_config.h"
 #include "AFIO_private.h"
 
+
+//Note: For selectiong which pin in which port to trigger EXTI 0 -- 15  
 void MAFIO_voidSetEXTICongif(u8 copy_u8Line, u8 copy_u8SelectedPort)
 {
   u8 local_u8RegIndex = 0;
@@ -34,7 +36,12 @@ void MAFIO_voidSetEXTICongif(u8 copy_u8Line, u8 copy_u8SelectedPort)
     copy_u8Line -= 12;
   }
 
+  // first clear the bits in the selected portion by user and then put the new value 
+  //Note: shift left shifts the value on left handside by the number on the right handside
   AFIO->AFIO_EXTICR[local_u8RegIndex] &= ~((0b1111) << (copy_u8Line * 4));
+
+  // put the new value shift left at the right place 
+  // note Copy_u8line 0 -- 15 lines in our stm32f103816
   AFIO->AFIO_EXTICR[local_u8RegIndex] |= ((copy_u8SelectedPort) << (copy_u8Line * 4));
 }
 
