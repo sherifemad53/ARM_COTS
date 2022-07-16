@@ -17,68 +17,76 @@
 //  1- synchrounos function means it must finish before all it code before returning like while loop , etc. as it doesn't set value and return
 //  2- while asynchrounos is the opposite of synchrounos it sets value and gets out of the function
 
-static volatile u32 counter = 0;
-
 void (*GLOBAL_voidCallBack)(void);
+volatile u8SetInterval = 0;
 
-void MSTK_voidInit()
-{
+void MSTK_voidInit() {
 #if STK_CLKSOURCE == CLK_SOURCE_AHB
-  SET_BIT(STK_CTRL, 2);
+	SET_BIT(MSTK->CTRL, 2);
 #elif STK_CLKSOURCE == CLK_SOURCE_AHB_DIV_8
-  CLR_BIT(STK_CTRL, 2);
+	CLR_BIT(STK_CTRL, 2);
 #endif
-  CLR_BIT(STK_CTRL, STK_TICKINTEN_BIT);
-  CLR_BIT(STK_CTRL, STK_ENABLE_BIT);
 }
 
 // TODO: To delay 1ms need 1000us so 1000 count
 
-void MSTK_voidSetBusyWait(u32 Copy_u32Ticks)
-{
-   STK_LOAD = Copy_u32Ticks;
-   SET_BIT(STK_CTRL, STK_ENABLE_BIT);
-   while(GET_BIT(STK_CTRL,STK_COUNTFLAG_BIT)==0);
-   SET_BIT(STK_CTRL, STK_ENABLE_BIT);
-   STK_LOAD = 0;
-   STK_VAL = 0;
+void MSTK_voidSetBusyWait(u32 Copy_u32Ticks) {
+	MSTK->VAL = 0;
+	MSTK->LOAD = Copy_u32Ticks;
+//   SET_BIT(MSTK->CTRL, STK_ENABLE_BIT);
+	MSTK->CTRL |= 0x01;
+	while (GET_BIT(MSTK->CTRL, STK_COUNTFLAG_BIT) != 1)
+		;
+//   SET_BIT(MSTK->CTRL, STK_ENABLE_BIT);
+	MSTK->CTRL = 0x00;
+	MSTK->LOAD = 0;
+	MSTK->VAL = 0;
 }
 
-void MSTK_voidSetIntervelSingle(u32 Copy_u32Ticks, void (*Copy_fptr)(void))
-{
-  STK_LOAD = Copy_u32Ticks;
-  GLOBAL_voidCallBack = Copy_fptr;
-  SET_BIT(STK_CTRL, STK_TICKINTEN_BIT);
-  SET_BIT(STK_CTRL, STK_ENABLE_BIT);
+void MSTK_voidSetIntervelSingle(u32 Copy_u32Ticks, void (*Copy_fptr)(void)) {
+	MSTK->VAL = 0;
+	MSTK->LOAD = Copy_u32Ticks;
+	u8SetInterval = SINGLE;
+	GLOBAL_voidCallBack = Copy_fptr;
+//  SET_BIT(MSTK->CTRL, STK_TICKINTEN_BIT);
+//  SET_BIT(MSTK->CTRL, STK_ENABLE_BIT);
+	MSTK->CTRL |= 0x03;
 }
 
-void MSTK_voidSetIntervalPeriodic(u32 Copy_u32Ticks, void (*Copy_fptr)(void))
-{
-  STK_LOAD = Copy_u32Ticks;
-  GLOBAL_voidCallBack = Copy_fptr;
-  SET_BIT(STK_CTRL, STK_TICKINTEN_BIT);
-  SET_BIT(STK_CTRL, STK_ENABLE_BIT);
+void MSTK_voidSetIntervalPeriodic(u32 Copy_u32Ticks, void (*Copy_fptr)(void)) {
+	MSTK->VAL = 0;
+
+	MSTK->LOAD = Copy_u32Ticks;
+	GLOBAL_voidCallBack = Copy_fptr;
+	u8SetInterval = PERIODIC;
+//  SET_BIT(MSTK->CTRL, STK_TICKINTEN_BIT);
+//  SET_BIT(MSTK->CTRL, STK_ENABLE_BIT);
+	MSTK->CTRL |= 0x03;
 }
 
-void MSTK_voidStopInterval()
-{
-  CLR_BIT(STK_CTRL, STK_TICKINTEN_BIT);
-  SET_BIT(STK_CTRL, STK_ENABLE_BIT);
-  STK_LOAD = 0;
-  STK_VAL = 0;
+void MSTK_voidStopInterval() {
+	MSTK->CTRL = 0x00;
+//  CLR_BIT(MSTK->CTRL, STK_TICKINTEN_BIT);
+//  SET_BIT(MSTK->CTRL, STK_ENABLE_BIT);
+	MSTK->LOAD = 0;
+	MSTK->VAL = 0;
 }
 
-u32 MSTK_u32GetElapesdTime(void)
-{
-  return STK_LOAD;
+u32 MSTK_u32GetElapesdTime(void) {
+	return MSTK->VAL;
 }
-u32 MSTK_u32GetRemainingTime(void)
-{
-  return STK_LOAD - 0;
+u32 MSTK_u32GetRemainingTime(void) {
+	return MSTK->LOAD - MSTK->VAL;
 }
-void SysTick_Handler(void)
-{
-  GLOBAL_voidCallBack();
+
+void SysTick_Handler(void) {
+	u8 Local_u8Temp;
+	GLOBAL_voidCallBack();
+	if (u8SetInterval == SINGLE) {
+		MSTK_voidStopInterval();
+	}
+
+	Local_u8Temp = GET_BIT(MSTK->CTRL, STK_COUNTFLAG_BIT);
 }
 
 // u32 MSTK_u32GetCounter()

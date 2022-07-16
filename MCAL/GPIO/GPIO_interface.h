@@ -57,10 +57,9 @@
 #define INPUT_PULLDOWN_PULLUP 0b1000
 
 
-void MGPIO_voidSETPinDirection(uint8 copy_uint8PORT,uint8 copy_uint8PIN,uint8 copy_uint8Direction);
-
-void MGPIO_voidSETPinValue(uint8 copy_uint8PORT,uint8 copy_uint8PIN,uint8 copy_uint8Value);
-
-uint8 MGPIO_uint8GetPinValue(uint8 copy_uint8PORT,uint8 copy_uint8PIN);
+void MGPIO_voidSETPinDirection(u8 copy_u8PORT,u8 copy_u8PIN,u8 copy_u8Direction);
+void MGPIO_voidSETPinValue(u8 copy_u8PORT,u8 copy_u8PIN,u8 copy_u8Value);
+void MGPIO_voidTogglePin(u8 copy_u8PORT, u8 copy_u8PIN);
+u8 MGPIO_u8GetPinValue(u8 copy_u8PORT,u8 copy_u8PIN);
 
 #endif // !_DIO_INTERFACE_H
