@@ -1,26 +1,22 @@
-/*
- * OS_program.c
- *
- *  Created on: Nov 26, 2021
- *      Author: DELL
- */
+/**************************************************/
+/*  Author       :Sherif Emad                     */
+/*  Data         :17/7/2022                       */
+/*  Version      :V02                             */
+/**************************************************/
 
-#include "../lib/STD_TYPES.h"
-#include "../lib/BIT_MATH.h"
-
-#include "../TIMERS/TIMERS_interface.h"
-#include "../GIE/GIE_interface.h"
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
 
 #include "OS_interface.h"
 #include "OS_private.h"
 #include "OS_config.h"
 
-static Task_t OS_TaskQueue[NO_OF_TASKS]; //= { { NULL } };
+static Task_t OS_TaskQueue[NO_OF_TASKS] = {{NULL}};
 
 void Scheduler(void)
 {
 	// static u16 tickcount = 0;
-	for (int i = 0; i < NO_OF_TASKS; i++)
+	for (u8 i = 0; i < NO_OF_TASKS; i++)
 	{
 		//		if (tickcount % OS_TaskQueue[i].periodicity
 		//				/*&& */) {
@@ -41,19 +37,32 @@ void Scheduler(void)
 	}
 }
 
-void OS_vidStartScheluler(void)
+void OS_voidStartScheluler(void)
 {
-  //todo implement here SYSTICK TIMER SETINTERVALPERIODIC with the required tick time
+	// todo implement here SYSTICK TIMER SETINTERVALPERIODIC with the required tick time
 	while (1)
 	{
 	}
 }
 
-void OS_vidCreateTask(u16 periodicity, u8 TaskID, u16 initaildelay,
+void OS_voidCreateTask(u16 periodicity, u8 TaskID, u16 initaildelay,
 											void (*TaskFptr)(void))
 {
 	OS_TaskQueue[TaskID].periodicity = periodicity;
 	OS_TaskQueue[TaskID].TaskFptr = TaskFptr;
 	OS_TaskQueue[TaskID].state = READY;
 	OS_TaskQueue[TaskID].initialdelay = initaildelay;
+}
+
+// todo change state to suspend
+void OS_voidEndTask(Task_t *task)
+{
+	task->state = SUSPENDED;
+}
+
+
+//todo change task to resume
+void OS_voidResumeTask(Task_t *task)
+{
+	task->state = READY;
 }
