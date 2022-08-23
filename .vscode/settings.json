@@ -3,6 +3,7 @@
     "bit_math.h": "c",
     "rcc_config.h": "c",
     "rcc_private.h": "c",
-    "std_types.h": "c"
+    "std_types.h": "c",
+    "stk_config.h": "c"
   }
 }

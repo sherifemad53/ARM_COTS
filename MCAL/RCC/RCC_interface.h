@@ -1,8 +1,14 @@
-/******************************************************************************************************/
-/*
- * Author :Sherif Emad
- * Version:1.0
- * Date:24/3/2022
+/**
+ * @file RCC_interface.h
+ * @author sherif emad (sherifemad53@gmail.com)
+ * @brief Function and Definitons that the user will need
+ * @version 0.1
+ * @date 2022-07-28
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ * @note Still needs to implement the algorithm for maxing the Fcpu (72Mhz)
+ * @warning RCC configured for 8MHZ only
  */
 
 

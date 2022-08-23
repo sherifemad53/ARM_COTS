@@ -1,10 +1,13 @@
-/******************************************************************************************************/
-/*
- * Author :Sherif Emad
- * Version:1.0
- * Date:28/3/2022
+/**
+ * @file GPIO_program.c
+ * @author sherif emad (sherifemad53@gmail.com)
+ * @brief This is GPIO Driver implemention for ARM_CORTEX_M3 *STM32F38T6*
+ * @version 0.1
+ * @date 2022-07-28
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
-
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
@@ -17,6 +20,14 @@
   NOTE: by using BSRR and BRR ,without using | & logic
   todo LOCKPIN FUCTION
 */
+
+/**
+ * @brief This function set pin direction input or output
+ * 
+ * @param copy_u8PORT 
+ * @param copy_u8PIN 
+ * @param copy_u8Mode 
+ */
 
 void MGPIO_voidSETPinDirection(u8 copy_u8PORT, u8 copy_u8PIN, u8 copy_u8Mode)
 {
@@ -57,7 +68,13 @@ void MGPIO_voidSETPinDirection(u8 copy_u8PORT, u8 copy_u8PIN, u8 copy_u8Mode)
     break;
   }
 }
-
+/**
+ * @brief This function put high or low on the pin configured to be output
+ * @see MGPIO_voidSETPinDirection() for info about pin configuration
+ * @param copy_u8PORT 
+ * @param copy_u8PIN 
+ * @param copy_u8Value 
+ */
 void MGPIO_voidSETPinValue(u8 copy_u8PORT, u8 copy_u8PIN, u8 copy_u8Value)
 {
   switch (copy_u8PORT)

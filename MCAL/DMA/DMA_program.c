@@ -1,8 +1,13 @@
-/***************************************************************************/
-/* Name:Sherif Emad Saad                                                   */
-/* Version:v1                                                              */
-/* Date:27/4/2022                                                          */
-/***************************************************************************/
+/**
+ * @file DMA_program.c
+ * @author sherif emad (sherifemad53@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-08-08
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"

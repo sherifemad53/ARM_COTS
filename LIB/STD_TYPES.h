@@ -1,5 +1,21 @@
+/**
+ * @file STD_TYPES.h
+ * @author sherif emad (sherifemad53@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-07-30
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #ifndef _STD_TYPES_H
 #define _STD_TYPES_H
+typedef enum
+{
+  false = 0,
+  true = 1
+} bool;
 
 typedef unsigned char u8;
 typedef signed char s8;

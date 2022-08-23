@@ -1,10 +1,13 @@
-/******************************************************************************************************/
-/*
- * Author :Sherif Emad
- * Version:1.0
- * Date:28/3/2022
+/**
+ * @file GPIO_interface.h
+ * @author sherif emad (sherifemad53@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-07-28
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
-
 #ifndef _GPIO_INTERFACE_H
 #define _GPIO_INTERFACE_H
 
@@ -15,11 +18,20 @@
 //After configuring it as INPUT_PIN
 #define GPIO_PULLDOWN 0
 #define GPIO_PULLUP 1
+/**
+ * @brief 
+ * 
+ */
 
 #define GPIOA 0
 #define GPIOB 1
 #define GPIOC 2
 
+/**
+ * @brief 
+ * 
+ * @param 
+ */
 #define PIN0 0
 #define PIN1 1
 #define PIN2 2

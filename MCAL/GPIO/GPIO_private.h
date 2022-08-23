@@ -1,10 +1,13 @@
-/******************************************************************************************************/
-/*
- * Author :Sherif Emad
- * Version:1.0
- * Date:28/3/2022
+/**
+ * @file GPIO_private.h
+ * @author sherif emad (sherifemad53@gmail.com)
+ * @brief ALl registers for this driver are defined here and Also some private stuff that user won't need to use 
+ * @version 0.1
+ * @date 2022-07-28
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
-
 
 #ifndef _GPIO_PRIVATE_H
 #define _GPIO_PRIVATE_H

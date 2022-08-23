@@ -7,6 +7,20 @@
 
 #ifndef _RCC_CONFIG_H
 #define _RCC_CONFIG_H
+
+/* Options:
+ HSE_CRYSTAL_8MHZ
+ HSE_CRYSTAL_24MHZ
+ HSE_CRYSTAL_36MHZ
+ HSE_CRYSTAL_72MHZ
+ HSE_RC_8MHZ
+ HSI_8MHZ
+ */
+
+
+#define SYSTEM_CLK HSE_CRYSTAL_36MHZ
+
+//todo return fclk
 /* Options:
  RCC_HSE_CRYSTAL
  RCC_HSE_RC
